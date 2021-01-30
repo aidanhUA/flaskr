@@ -1,5 +1,7 @@
 <!doctype html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <script type="text/javascript">
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -22,10 +24,11 @@
   window.onload = defaultOpen;
   </script>
 </head>
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %} - AidanHickman.com</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-  <h1>Flaskr</h1>
+  <h1>AidanHickman.com</h1>
+
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>

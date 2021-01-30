@@ -11,6 +11,10 @@ bp = Blueprint('blog', __name__)
 
 @bp.route('/')
 def index():
+    # fact_gen = request.args.get('fact_gen')
+    # if fact_gen:
+    #     fact_payload = FactGen.get_fact()
+
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
