@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="tab" >
+  <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button>
+  <button class="tablinks" onclick="openTab(event, 'Blog')">Blog</button>
+  <button class="tablinks" onclick="openTab(event, 'Stupid Things')">Stupid Things</button>
+  <button class="tablinks" onclick="openTab(event, 'About')">About</button>
+</div>
+
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+  <p>Home</p>
+</div>
+
+<div id="Blog" class="tabcontent">
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div id="Stupid Things" class="tabcontent">
+  <h3>Stupid Fact Generator</h3>
+<form action="" method="get">
+    <button name="fact_gen" value="fact_gen">Go on then.</button>
+</form>
+  <h3>Stupid Things 2</h3>
+  <p>Stupid Things 2</p>
+  <h3>Stupid Things 2</h3>
+  <p>Stupid Things 2</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About</h3>
+  <p>About</p>
+</div>
+
+
+{% endblock %}
+
+
+
+
